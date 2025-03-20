@@ -14,6 +14,7 @@ C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\persiste
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\pruebas\EliminarEstudiantesClase.java
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\persistencia\DAOs\ProfesorDAO.java
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\dominio\entidades\Estudiante.java
+C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\dominio\DTOs\nombreProfeListaDTO.java
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\dominio\entidades\Profesor.java
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\pruebas\AsignarDEsasignarProfesorAClase.java
 C:\Users\PC\Documents\GitHub\AS10-BDA\escuelita\escuelita\src\main\java\dominio\DTOs\ProfesorCantidadClasesDTO.java

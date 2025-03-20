@@ -4,6 +4,10 @@
  */
 package pruebas;
 
+import dominio.DTOs.ProfesorCantidadClasesDTO;
+import persistencia.DAOs.ClaseDAO;
+import persistencia.DAOs.ProfesorDAO;
+
 /**
  *
  * @author Ramon Valencia
@@ -15,6 +19,7 @@ public class ObtenerDTOsProfesor {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+           
     }
     
 }

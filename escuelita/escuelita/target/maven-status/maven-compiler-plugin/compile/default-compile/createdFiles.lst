@@ -9,6 +9,7 @@ pruebas\InsertarEstudiantes.class
 pruebas\AsignarDEsasignarProfesorAClase.class
 dominio\enums\Estatus.class
 pruebas\Escuelita.class
+dominio\DTOs\nombreProfeListaDTO.class
 dominio\entidades\Direccion.class
 dominio\entidades\Estudiante.class
 persistencia\DAOs\ProfesorDAO.class

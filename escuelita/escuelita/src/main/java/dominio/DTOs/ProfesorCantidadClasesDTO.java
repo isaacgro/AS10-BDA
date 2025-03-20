@@ -18,6 +18,23 @@ public class ProfesorCantidadClasesDTO {
         this.cantidadClases = cantidadClases;
     }
 
+    public String getNombreProfesor() {
+        return nombreProfesor;
+    }
+
+    public void setNombreProfesor(String nombreProfesor) {
+        this.nombreProfesor = nombreProfesor;
+    }
+
+    public int getCantidadClases() {
+        return cantidadClases;
+    }
+
+    public void setCantidadClases(int cantidadClases) {
+        this.cantidadClases = cantidadClases;
+    }
+    
+
     @Override
     public String toString() {
         return "ProfesorCantidadClasesDTO{" + 
