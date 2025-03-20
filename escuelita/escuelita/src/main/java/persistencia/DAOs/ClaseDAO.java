@@ -4,10 +4,14 @@
  */
 package persistencia.DAOs;
 
+import dominio.DTOs.EstudianteCantidadClasesDTO;
+import dominio.DTOs.EstudianteClasesDTO;
 import dominio.entidades.Clase;
+import dominio.entidades.Direccion;
 import dominio.entidades.Estudiante;
 import dominio.entidades.Profesor;
 import exception.PersistenciaException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import persistencia.conexion.Conexion;
@@ -189,6 +193,22 @@ public class ClaseDAO {
 
     public boolean cambiarProfesor(Long idClase, Long idNuevoProfesor) throws PersistenciaException {
         return asignarProfesor(idClase, idNuevoProfesor); // Ya maneja la reasignación correctamente
+    }
+    
+    public EstudianteCantidadClasesDTO obtenerCantidadEstudiantesClase(Long idEstudiante) throws PersistenciaException {
+        EntityManager em = Conexion.crearConexion();
+        
+        
+        try {
+            return (EstudianteCantidadClasesDTO) em.createQuery("SELECT COUNT(c) FROM Clases c WHERE c.estudiante.id = :idEstudiante")
+                    .setParameter("idEstudiante", idEstudiante)
+                    .getSingleResult();
+                    
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener cantidad de estudiatnes del estudiante: " + e.getMessage());
+        } finally {
+            em.close();
+        }
     }
 
 }

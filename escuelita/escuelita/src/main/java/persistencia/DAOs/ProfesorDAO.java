@@ -124,7 +124,7 @@ public class ProfesorDAO {
         try {
             Profesor profe = em.find(Profesor.class, id);
             if (profe == null) {
-                throw new PersistenciaException("El profesor con nombre" + id + " no existe");
+                throw new PersistenciaException("El profesor con id" + id + " no existe");
             }
 
             List<String> clasesImpartidas = new ArrayList<>();
