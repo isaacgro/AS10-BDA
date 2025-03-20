@@ -4,6 +4,7 @@
  */
 package persistencia.DAOs;
 
+import dominio.DTOs.ProfesorCantidadClasesDTO;
 import persistencia.conexion.Conexion;
 import dominio.entidades.Clase;
 import dominio.entidades.Profesor;
@@ -95,6 +96,21 @@ public class ProfesorDAO {
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw new PersistenciaException("Error al eliminar el profesor: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+    
+    public ProfesorCantidadClasesDTO obtenerClasesProfesor(Long id) throws PersistenciaException {
+        EntityManager em = Conexion.crearConexion();
+        try {
+            Profesor profesor = em.find(Profesor.class, id);
+            if (profesor == null) {
+                throw new PersistenciaException("El profesor con ID " + id + " no existe.");
+            }
+            
+            int clasesProfesor = profesor.getClases().size();
+            return new ProfesorCantidadClasesDTO(profesor.getNombre(), clasesProfesor);
         } finally {
             em.close();
         }
