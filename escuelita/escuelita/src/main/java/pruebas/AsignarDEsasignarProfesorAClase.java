@@ -5,6 +5,7 @@
 package pruebas;
 
 import dominio.DTOs.ProfesorCantidadClasesDTO;
+import dominio.DTOs.nombreProfeListaDTO;
 import dominio.entidades.Clase;
 import dominio.entidades.Profesor;
 import exception.PersistenciaException;
@@ -74,9 +75,6 @@ public class AsignarDEsasignarProfesorAClase {
                 System.out.println("Profesor " + profesor2.getNombre() + " asignado a " + clase4.getNombre());
             }
             if (claseDAO.asignarProfesor(clase5.getId(), profesor3.getId())) {
-                System.out.println("Profesor " + profesor3.getNombre() + " asignado a " + clase5.getNombre());
-            }
-            if (claseDAO.asignarProfesor(clase5.getId(), profesor1.getId())) {
                 System.out.println("Profesor " + profesor1.getNombre() + " asignado a " + clase5.getNombre());
             }
 
@@ -99,13 +97,31 @@ public class AsignarDEsasignarProfesorAClase {
             // Verificar que el nuevo profesor tiene asignada la clase
 //            imprimirClasesDeProfesor(profesor2.getId(), profesorDAO);
             ProfesorCantidadClasesDTO clasesProfesor1 = profesorDAO.obtenerClasesProfesor(profesor1.getId());
-            System.out.println("El Profesor " + clasesProfesor1.getNombreProfesor() + " imparte " + clasesProfesor1.getCantidadClases() + " clases.");
+            nombreProfeListaDTO nombreClasesProfesor1 = profesorDAO.obtenerClasesImpartidas(profesor1.getId());
+            System.out.println("\nEl Profesor " + clasesProfesor1.getNombreProfesor() + " imparte " + clasesProfesor1.getCantidadClases() + " clases.");
+            System.out.println("Clases impartidas: ");
+            for (int i = 0; i < nombreClasesProfesor1.getClases().size(); i++){
+                String nombreClase = nombreClasesProfesor1.getClases().get(i);
+                System.out.println(nombreClase);
+            }
             
             ProfesorCantidadClasesDTO clasesProfesor2 = profesorDAO.obtenerClasesProfesor(profesor2.getId());
-            System.out.println("El Profesor " + clasesProfesor2.getNombreProfesor() + " imparte " + clasesProfesor2.getCantidadClases() + " clases.");
+            nombreProfeListaDTO nombreClasesProfesor2 = profesorDAO.obtenerClasesImpartidas(profesor2.getId());
+            System.out.println("\nEl Profesor " + clasesProfesor2.getNombreProfesor() + " imparte " + clasesProfesor2.getCantidadClases() + " clases.");
+            System.out.println("Clases impartidas: ");
+            for (int i = 0; i < nombreClasesProfesor2.getClases().size(); i++){
+                String nombreClase = nombreClasesProfesor2.getClases().get(i);
+                System.out.println(nombreClase);
+            }
             
             ProfesorCantidadClasesDTO clasesProfesor3 = profesorDAO.obtenerClasesProfesor(profesor3.getId());
-            System.out.println("El Profesor " + clasesProfesor3.getNombreProfesor() + " imparte " + clasesProfesor3.getCantidadClases() + " clases.");
+            nombreProfeListaDTO nombreClasesProfesor3 = profesorDAO.obtenerClasesImpartidas(profesor3.getId());
+            System.out.println("\nEl Profesor " + clasesProfesor3.getNombreProfesor() + " imparte " + clasesProfesor3.getCantidadClases() + " clases.");
+            System.out.println("Clases impartidas: ");
+            for (int i = 0; i < nombreClasesProfesor3.getClases().size(); i++){
+                String nombreClase = nombreClasesProfesor3.getClases().get(i);
+                System.out.println(nombreClase);
+            }
             
 
         } catch (PersistenciaException e) {
