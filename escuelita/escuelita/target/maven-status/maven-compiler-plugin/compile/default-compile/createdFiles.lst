@@ -1,4 +1,5 @@
 persistencia\DAOs\DireccionDAO.class
+pruebas\ObtenerDTOsProfesor.class
 persistencia\conexion\Conexion.class
 pruebas\InsertarEstudiantesClase.class
 exception\PersistenciaException.class
@@ -11,6 +12,7 @@ pruebas\Escuelita.class
 dominio\entidades\Direccion.class
 dominio\entidades\Estudiante.class
 persistencia\DAOs\ProfesorDAO.class
+dominio\DTOs\ProfesorCantidadClasesDTO.class
 persistencia\DAOs\ClaseDAO.class
 persistencia\DAOs\EstudianteDAO.class
 dominio\DTOs\EstudianteCantidadClasesDTO.class
