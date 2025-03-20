@@ -4,6 +4,7 @@
  */
 package persistencia.DAOs;
 
+import dominio.DTOs.EstudianteCalificaciones;
 import dominio.DTOs.EstudianteCantidadClasesDTO;
 import dominio.DTOs.EstudianteClasesDTO;
 import persistencia.conexion.Conexion;
@@ -230,6 +231,26 @@ public class EstudianteDAO {
 
             int cantidadClases = estudiante.getClases().size(); // Contamos las clases inscritas
             return new EstudianteCantidadClasesDTO(estudiante.getNombre(), cantidadClases);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<EstudianteCalificaciones> obtenerPromedioMayor(Double promedio) throws PersistenciaException {
+        EntityManager em = Conexion.crearConexion();
+        try {
+            List<Estudiante> estudiantes = em.createQuery("SELECT e FROM Estudiante e WHERE e.promedio > :promedio")
+                    .setParameter("promedio", promedio)
+                    .getResultList();
+            List<EstudianteCalificaciones> estudiantesCalif = new ArrayList<>();
+            for (int i = 0; i < estudiantes.size(); i++) {
+                Estudiante estudiante = estudiantes.get(i);
+                estudiantesCalif.add(new EstudianteCalificaciones(estudiante.getNombre(), estudiante.getPromedio()));
+            }
+            return estudiantesCalif;
+        } catch (Exception e) {
+            throw new PersistenciaException("Hubo un error al consultar los estudiante con un promedio mayor a " + 
+                    promedio + ":" + e.getMessage());
         } finally {
             em.close();
         }

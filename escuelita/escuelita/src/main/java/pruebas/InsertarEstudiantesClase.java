@@ -28,21 +28,21 @@ public class InsertarEstudiantesClase {
 
         try {
             // Creamos tres clases
-            Clase clase1 = new Clase("Progra II", null);
-            Clase clase2 = new Clase("Bases Avanzadas", null);
-            Clase clase3 = new Clase("Diseño de Software", null);
+            Clase clase1 = claseDAO.buscarPorId(1L);
+            Clase clase2 = claseDAO.buscarPorId(2L);
+            Clase clase3 = claseDAO.buscarPorId(3L);
 
             // guardamos las clases
-            clase1 = claseDAO.guardar(clase1);
-            clase2 = claseDAO.guardar(clase2);
-            clase3 = claseDAO.guardar(clase3);
+//            clase1 = claseDAO.guardar(clase1);
+//            clase2 = claseDAO.guardar(clase2);
+//            clase3 = claseDAO.guardar(clase3);
 
             // control para confirmar que se guardaron
-            System.out.println("Clases creadas:");
-
-            System.out.println("Clase 1: " + clase1.getNombre());
-            System.out.println("Clase 2: " + clase2.getNombre());
-            System.out.println("Clase 3: " + clase3.getNombre());
+//            System.out.println("Clases creadas:");
+//
+//            System.out.println("Clase 1: " + clase1.getNombre());
+//            System.out.println("Clase 2: " + clase2.getNombre());
+//            System.out.println("Clase 3: " + clase3.getNombre());
 
             // Creamos e insertamos estudiantes en las clases
             Estudiante estudiante1 = new Estudiante("Yeyoso Johnson", 9.0, Estatus.ACTIVO, new Direccion("Calle A", 123, "Centro"));
@@ -51,11 +51,14 @@ public class InsertarEstudiantesClase {
             Estudiante estudiante2 = new Estudiante("Arielito Martinez", 7.5, Estatus.ACTIVO, new Direccion("Calle B", 456, "Norte"));
             estudiante2 = estudianteDAO.guardar(estudiante2);
 
-            Estudiante estudiante3 = new Estudiante("Charlie Brown", 8.2, Estatus.INACTIVO, new Direccion("Calle C", 789, "Sur"));
+            Estudiante estudiante3 = new Estudiante("Isaaquito Alpha", 8.2, Estatus.INACTIVO, new Direccion("Calle C", 789, "Sur"));
             estudiante3 = estudianteDAO.guardar(estudiante3);
 
-            Estudiante estudiante4 = new Estudiante("David Williams", 6.8, Estatus.ACTIVO, new Direccion("Calle D", 159, "Este"));
+            Estudiante estudiante4 = new Estudiante("Cesar Coronel", 6.8, Estatus.ACTIVO, new Direccion("Calle D", 159, "Este"));
             estudiante4 = estudianteDAO.guardar(estudiante4);
+            
+            Estudiante estudiante5 = new Estudiante("Choix Lopez", 7.8, Estatus.INACTIVO, new Direccion("Calle I", 405, "Oeste"));
+            estudiante5 = estudianteDAO.guardar(estudiante4);
 
             // Inscribir estudiantes en clases usando el método inscribirEnClase()
             estudianteDAO.inscribirEnClase(estudiante1.getId(), clase1.getId());
@@ -63,6 +66,8 @@ public class InsertarEstudiantesClase {
             estudianteDAO.inscribirEnClase(estudiante3.getId(), clase3.getId());
             estudianteDAO.inscribirEnClase(estudiante4.getId(), clase1.getId());
             estudianteDAO.inscribirEnClase(estudiante4.getId(), clase3.getId());
+            estudianteDAO.inscribirEnClase(estudiante5.getId(), clase2.getId());
+            estudianteDAO.inscribirEnClase(estudiante3.getId(), clase1.getId());
 
             // Control, imprimimos los estudiantes inscritos en una clase
             System.out.println(" ");
