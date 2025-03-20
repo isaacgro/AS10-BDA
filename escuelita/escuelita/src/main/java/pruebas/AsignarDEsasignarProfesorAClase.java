@@ -27,8 +27,8 @@ public class AsignarDEsasignarProfesorAClase {
         try {
             // Crear profesores
             Profesor profesor1 = new Profesor("Gibran Duran", "gibran.duran@universidad.com");
-            Profesor profesor2 = new Profesor("Felipe Cabada", "ernesto.navarro@universidad.com");
-            Profesor profesor3 = new Profesor("Dr Baltazar", "ernesto.navarro@universidad.com");
+            Profesor profesor2 = new Profesor("Felipe Cabada", "felipe.cabada@universidad.com");
+            Profesor profesor3 = new Profesor("Dr Baltazar", "dr.baltazar@universidad.com");
 
 
             profesor1 = profesorDAO.guardar(profesor1);
