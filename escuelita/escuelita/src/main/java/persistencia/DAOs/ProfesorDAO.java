@@ -5,10 +5,12 @@
 package persistencia.DAOs;
 
 import dominio.DTOs.ProfesorCantidadClasesDTO;
+import dominio.DTOs.nombreProfeListaDTO;
 import persistencia.conexion.Conexion;
 import dominio.entidades.Clase;
 import dominio.entidades.Profesor;
 import exception.PersistenciaException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -100,7 +102,7 @@ public class ProfesorDAO {
             em.close();
         }
     }
-    
+
     public ProfesorCantidadClasesDTO obtenerClasesProfesor(Long id) throws PersistenciaException {
         EntityManager em = Conexion.crearConexion();
         try {
@@ -108,7 +110,7 @@ public class ProfesorDAO {
             if (profesor == null) {
                 throw new PersistenciaException("El profesor con ID " + id + " no existe.");
             }
-            
+
             int clasesProfesor = profesor.getClases().size();
             return new ProfesorCantidadClasesDTO(profesor.getNombre(), clasesProfesor);
         } finally {
@@ -116,4 +118,25 @@ public class ProfesorDAO {
         }
     }
 
+    public nombreProfeListaDTO obtenerClasesImpartidas(Long id) throws PersistenciaException {
+
+        EntityManager em = Conexion.crearConexion();
+        try {
+            Profesor profe = em.find(Profesor.class, id);
+            if (profe == null) {
+                throw new PersistenciaException("El profesor con nombre" + id + " no existe");
+            }
+
+            List<String> clasesImpartidas = new ArrayList<>();
+            for (Clase clase : profe.getClases()) {
+                clasesImpartidas.add(clase.getNombre());// Agregar el nombre de cada clase a la lista
+            }
+
+            return new nombreProfeListaDTO(profe.getNombre(), clasesImpartidas);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener estudiante con sus clases: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
 }
