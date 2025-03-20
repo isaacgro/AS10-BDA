@@ -6,6 +6,7 @@ package persistencia.DAOs;
 
 import dominio.DTOs.EstudianteCantidadClasesDTO;
 import dominio.DTOs.EstudianteClasesDTO;
+import dominio.DTOs.profesorMejorEstudianteDTO;
 import dominio.entidades.Clase;
 import dominio.entidades.Direccion;
 import dominio.entidades.Estudiante;
@@ -205,10 +206,12 @@ public class ClaseDAO {
                     .getSingleResult();
                     
         } catch (Exception e) {
-            throw new PersistenciaException("Error al obtener cantidad de estudiatnes del estudiante: " + e.getMessage());
+            throw new PersistenciaException("Error al obtener cantidad de estudiantes del profesor: " + e.getMessage());
         } finally {
             em.close();
         }
     }
+    
+    
 
 }

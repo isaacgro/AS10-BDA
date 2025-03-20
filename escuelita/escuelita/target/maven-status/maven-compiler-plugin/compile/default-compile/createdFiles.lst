@@ -12,6 +12,7 @@ dominio\DTOs\profesorMejorEstudianteDTO.class
 persistencia\DAOs\DireccionDAO.class
 persistencia\conexion\Conexion.class
 pruebas\EliminarEstudiantesClase.class
+dominio\DTOs\EstudianteCalificaciones.class
 pruebas\AsignarDEsasignarProfesorAClase.class
 pruebas\Escuelita.class
 dominio\DTOs\ProfesorEstudiantesDTO.class

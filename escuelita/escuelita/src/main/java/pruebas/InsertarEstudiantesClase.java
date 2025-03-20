@@ -4,11 +4,13 @@
  */
 package pruebas;
 
+import dominio.DTOs.EstudianteCalificaciones;
 import dominio.entidades.Clase;
 import dominio.entidades.Direccion;
 import dominio.entidades.Estudiante;
 import dominio.enums.Estatus;
 import exception.PersistenciaException;
+import java.util.List;
 import persistencia.DAOs.ClaseDAO;
 import persistencia.DAOs.EstudianteDAO;
 
@@ -68,7 +70,16 @@ public class InsertarEstudiantesClase {
             estudianteDAO.inscribirEnClase(estudiante4.getId(), clase3.getId());
             estudianteDAO.inscribirEnClase(estudiante5.getId(), clase2.getId());
             estudianteDAO.inscribirEnClase(estudiante3.getId(), clase1.getId());
-
+            
+            Double promedioMayor = 7.50;
+            
+            
+            System.out.println(" ");
+            System.out.println("--- Listado de promedios de alumnos ---");
+            for(EstudianteCalificaciones e : estudianteDAO.obtenerPromedioMayor(promedioMayor)){
+                System.out.println(" - " + e.getNombreEstudiante() + " promedio: " + e.getPromedio());
+            }
+            
             // Control, imprimimos los estudiantes inscritos en una clase
             System.out.println(" ");
             System.out.println("--- Listado de estudiantes por clase ---");

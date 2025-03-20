@@ -5,9 +5,12 @@
 package persistencia.DAOs;
 
 import dominio.DTOs.ProfesorCantidadClasesDTO;
+import dominio.DTOs.ProfesorEstudiantesDTO;
 import dominio.DTOs.nombreProfeListaDTO;
+import dominio.DTOs.profesorMejorEstudianteDTO;
 import persistencia.conexion.Conexion;
 import dominio.entidades.Clase;
+import dominio.entidades.Estudiante;
 import dominio.entidades.Profesor;
 import exception.PersistenciaException;
 import java.util.ArrayList;
@@ -135,6 +138,49 @@ public class ProfesorDAO {
             return new nombreProfeListaDTO(profe.getNombre(), clasesImpartidas);
         } catch (Exception e) {
             throw new PersistenciaException("Error al obtener estudiante con sus clases: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
+    public ProfesorEstudiantesDTO obtenerEstudiantesProfesor(Long idProfesor) throws PersistenciaException {
+        EntityManager em = Conexion.crearConexion();
+        try {
+            List<Estudiante> estudiantes = em.createQuery("SELECT e FROM Estudiante e "
+                    + "INNER JOIN e.clases c "
+                    + "INNER JOIN c.profesor p "
+                    + "WHERE p.id = :idProfesor").setParameter("idProfesor", idProfesor)
+                    .getResultList();
+            List<String> nombreEstudiantes = new ArrayList<>();
+            for (int i = 0; i < estudiantes.size(); i++) {
+                nombreEstudiantes.add(estudiantes.get(i).getNombre());
+            }
+            Profesor profe = em.find(Profesor.class, idProfesor);
+
+            return new ProfesorEstudiantesDTO(profe.getNombre(), nombreEstudiantes);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener los estudiantes del Profesor: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+    
+    public profesorMejorEstudianteDTO obtenerMejorEstudiante(Long idProfesor) throws PersistenciaException {
+        EntityManager em = Conexion.crearConexion();
+        
+        try {
+            profesorMejorEstudianteDTO estudianteMejor = em.createQuery("SELECT new profesorMejorEstudianteDTO(c.nombre, p.nombre, e.promedio, e.nombre) "
+                    + "FROM Estudiante e "
+                    + "INNER JOIN e.clases c "
+                    + "INNER JOIN c.profesor p "
+                    + "WHERE p.id = :idProfesor "
+                    + "ORDER BY e.promedio DESC", profesorMejorEstudianteDTO.class)
+                    .setParameter("idProfesor", idProfesor)
+                    .getSingleResult();
+            
+            return estudianteMejor;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener al mejor estudiante: " + e.getMessage());
         } finally {
             em.close();
         }
